@@ -13,7 +13,7 @@
                 <i>${event.getFilm().getTitle()}</i>
             </div>
             <div class="card-footer text-muted">
-                ID = ${event.id}, PRICE = ${event.price}
+                PRICE = ${event.price} UAH
             </div>
         </div>
     </#list>

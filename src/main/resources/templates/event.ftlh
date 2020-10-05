@@ -38,7 +38,7 @@
                 <i>${event.getFilm().getTitle()}</i>
             </div>
             <div class="card-footer text-muted">
-                ID = ${event.id}, PRICE = ${event.price}
+                ID = ${event.id}, PRICE = ${event.price} UAH
             </div>
         </div>
     <#else>

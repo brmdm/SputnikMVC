@@ -5,6 +5,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import ua.sputnik.SputnikMVC.model.entity.User;
 import ua.sputnik.SputnikMVC.model.repository.UserRepository;
 
 /**
@@ -12,13 +13,27 @@ import ua.sputnik.SputnikMVC.model.repository.UserRepository;
  */
 @Service
 public class UserService implements UserDetailsService {
+    private UserRepository userRepository;
     @Autowired
-    private UserRepository userRepo;
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return userRepo.findByUsername(username);
+        return userRepository.findByUsername(username);
     }
 
+    public boolean addUser() {
+        return false;
+    }
+
+    public User findById(Long id) {
+        return null;
+    }
+
+    public Iterable<User> findAll() {
+        return userRepository.findAll();
+    }
 
 }
