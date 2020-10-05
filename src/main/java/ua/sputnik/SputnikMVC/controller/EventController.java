@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ua.sputnik.SputnikMVC.model.entity.Event;
 import ua.sputnik.SputnikMVC.model.entity.Film;
-import ua.sputnik.SputnikMVC.model.repository.EventRepository;
-import ua.sputnik.SputnikMVC.model.repository.FilmRepository;
+import ua.sputnik.SputnikMVC.service.EventService;
+import ua.sputnik.SputnikMVC.service.FilmService;
 
 import java.util.Map;
 
@@ -22,18 +22,18 @@ import java.util.Map;
 @RequestMapping("/event")
 @PreAuthorize("hasAuthority('ADMIN')")
 public class EventController {
-    private EventRepository eventRepository;
-    private FilmRepository filmRepository;
+    private EventService eventService;
+    private FilmService filmService;
+
     @Autowired
-    public EventController(EventRepository eventRepository, FilmRepository filmRepository) {
-        this.eventRepository = eventRepository;
-        this.filmRepository = filmRepository;
+    public EventController(EventService eventService, FilmService filmService) {
+        this.eventService = eventService;
+        this.filmService = filmService;
     }
+
     @GetMapping
     public String list(Model model) {
-        Iterable<Event> events = eventRepository.findAll();
-
-        model.addAttribute("events", events);
+        model.addAttribute("events", eventService.findAll());
         return "event";
     }
 
@@ -43,16 +43,15 @@ public class EventController {
             @RequestParam String time,
             @RequestParam String film,
             @RequestParam Integer price, Map<String, Object> model) {
-        Film filmDb = filmRepository.findByTitle(film);
+        Film filmDb = filmService.findByTitle(film);
         if (filmDb == null) {
             model.put("message", "Film not found. Try again!!!");
             return "event";
         }
 
         Event event = new Event(date, time, price, filmDb);
-        eventRepository.save(event);
-        Iterable<Event> events = eventRepository.findAll();
-        model.put("events", events);
+        eventService.addEvent(event);
+        model.put("events", eventService.findAll());
 
         return "event";
     }

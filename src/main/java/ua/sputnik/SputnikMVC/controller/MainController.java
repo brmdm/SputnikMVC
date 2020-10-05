@@ -10,11 +10,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import ua.sputnik.SputnikMVC.model.entity.Event;
 import ua.sputnik.SputnikMVC.model.entity.Message;
 import ua.sputnik.SputnikMVC.model.entity.User;
-import ua.sputnik.SputnikMVC.model.repository.EventRepository;
 import ua.sputnik.SputnikMVC.model.repository.MessageRepository;
+import ua.sputnik.SputnikMVC.service.EventService;
 
 import java.util.Map;
 
@@ -22,19 +21,17 @@ import java.util.Map;
 public class MainController {
 
     private MessageRepository messageRepo;
-    private EventRepository eventRepository;
+    private EventService eventService;
 
     @Autowired
-    public MainController(MessageRepository messageRepo, EventRepository eventRepository) {
-        this.eventRepository = eventRepository;
+    public MainController(MessageRepository messageRepo, EventService eventService) {
+        this.eventService = eventService;
         this.messageRepo = messageRepo;
     }
 
     @GetMapping("/")
     public String greeting(Model model) {
-        Iterable<Event> events = eventRepository.findAll();
-
-        model.addAttribute("events", events);
+        model.addAttribute("events", eventService.findAll());
         return "greeting";
     }
 

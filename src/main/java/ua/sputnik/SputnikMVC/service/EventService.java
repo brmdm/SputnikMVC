@@ -18,8 +18,8 @@ public class EventService {
         this.eventRepository = eventRepository;
     }
 
-    public boolean addEvent() {
-        return false;
+    public void addEvent(Event event) {
+        eventRepository.save(event);
     }
 
     public boolean deleteEvent(Long id) {

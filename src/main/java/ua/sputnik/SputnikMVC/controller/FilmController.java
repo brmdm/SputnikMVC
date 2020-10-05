@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ua.sputnik.SputnikMVC.model.entity.Film;
-import ua.sputnik.SputnikMVC.model.repository.FilmRepository;
+import ua.sputnik.SputnikMVC.service.FilmService;
 
 import java.util.Map;
 
@@ -20,17 +20,15 @@ import java.util.Map;
 @RequestMapping("/film")
 @PreAuthorize("hasAuthority('ADMIN')")
 public class FilmController {
-    private FilmRepository filmRepository;
+    private FilmService filmService;
     @Autowired
-    public FilmController(FilmRepository filmRepository) {
-        this.filmRepository = filmRepository;
+    public FilmController(FilmService filmService) {
+        this.filmService = filmService;
     }
 
     @GetMapping
     public String list(Model model) {
-        Iterable<Film> films = filmRepository.findAll();
-
-        model.addAttribute("films", films);
+        model.addAttribute("films", filmService.findAll());
         return "film";
     }
 
@@ -40,11 +38,9 @@ public class FilmController {
             @RequestParam String description, Map<String, Object> model) {
         Film film = new Film(title, description);
 
-        filmRepository.save(film);
+        filmService.addFilm(film);
 
-        Iterable<Film> films = filmRepository.findAll();
-
-        model.put("films", films);
+        model.put("films", filmService.findAll());
 
         return "film";
     }

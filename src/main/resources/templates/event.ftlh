@@ -1,9 +1,9 @@
 <#import "parts/common.ftlh" as c>
 <@c.page>
-
+    ${message?ifExists}
     <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false"
        aria-controls="collapseExample">
-        Add new Film
+        Add new Event
     </a>
 
     <div class="collapse" id="collapseExample">

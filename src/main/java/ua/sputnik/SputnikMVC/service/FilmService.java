@@ -16,8 +16,8 @@ public class FilmService {
         this.filmRepository = filmRepository;
     }
 
-    public boolean addFilm() {
-        return false;
+    public void addFilm(Film film) {
+        filmRepository.save(film);
     }
 
     public boolean deleteFilm(Long id) {
@@ -25,7 +25,7 @@ public class FilmService {
     }
 
     public Film findByTitle(String title) {
-        return null;
+        return filmRepository.findByTitle(title);
     }
 
     public Film findById(Long id) {
