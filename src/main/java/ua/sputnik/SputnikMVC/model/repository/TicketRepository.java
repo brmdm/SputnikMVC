@@ -7,4 +7,5 @@ import ua.sputnik.SputnikMVC.model.entity.Ticket;
  * @author Barma
  */
 public interface TicketRepository extends CrudRepository<Ticket, Integer> {
+
 }

@@ -34,7 +34,6 @@
                     <a class="dropdown-item" href="#">UA</a>
                     <a class="dropdown-item" href="#">ENG</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Something else here</a>
                 </div>
             </li>
         </ul>

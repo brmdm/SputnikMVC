@@ -22,12 +22,10 @@ public class EventService {
         eventRepository.save(event);
     }
 
-    public boolean deleteEvent(Long id) {
-        return false;
-    }
+    public void deleteEvent(Long id) { }
 
     public Event findById (Long id) {
-        return null;
+        return eventRepository.findById(id);
     }
 
     public int[] findFreeSeats () {

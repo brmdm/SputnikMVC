@@ -11,7 +11,6 @@ public class Ticket {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
 
-
     private Long seat;
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -21,6 +20,12 @@ public class Ticket {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "event_id")
     private Event event;
+
+    public Ticket(Long seat, User user, Event event) {
+        this.seat = seat;
+        this.user = user;
+        this.event = event;
+    }
 
     public Ticket() {
     }

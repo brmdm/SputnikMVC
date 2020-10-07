@@ -14,6 +14,7 @@ import ua.sputnik.SputnikMVC.model.entity.Message;
 import ua.sputnik.SputnikMVC.model.entity.User;
 import ua.sputnik.SputnikMVC.model.repository.MessageRepository;
 import ua.sputnik.SputnikMVC.service.EventService;
+import ua.sputnik.SputnikMVC.service.TicketService;
 
 import java.util.Map;
 
@@ -22,11 +23,13 @@ public class MainController {
 
     private MessageRepository messageRepo;
     private EventService eventService;
+    private TicketService ticketService;
 
     @Autowired
-    public MainController(MessageRepository messageRepo, EventService eventService) {
+    public MainController(MessageRepository messageRepo, EventService eventService, TicketService ticketService) {
         this.eventService = eventService;
         this.messageRepo = messageRepo;
+        this.ticketService = ticketService;
     }
 
     @GetMapping("/")
@@ -36,20 +39,30 @@ public class MainController {
     }
 
     @GetMapping("/main")
-    public String main(@RequestParam(required = false, defaultValue = "") String filter, Model model) {
-        Iterable<Message> messages = messageRepo.findAll();
+    public String mainPage(Model model) {
 
-        if (filter != null && !filter.isEmpty()) {
-            messages = messageRepo.findByTag(filter);
-        } else {
-            messages = messageRepo.findAll();
-        }
-
-        model.addAttribute("messages", messages);
-        model.addAttribute("filter",filter);
+//        model.addAttribute("tickets", ticketService.findAllByUserId());
+        model.addAttribute("tickets", ticketService.findAll());
 
         return "main";
     }
+
+//    @GetMapping("/main")
+//    public String main(@RequestParam(required = false, defaultValue = "") String filter, Model model) {
+//        Iterable<Message> messages = messageRepo.findAll();
+//
+//        if (filter != null && !filter.isEmpty()) {
+//            messages = messageRepo.findByTag(filter);
+//        } else {
+//            messages = messageRepo.findAll();
+//        }
+//
+//        model.addAttribute("messages", messages);
+//        model.addAttribute("filter",filter);
+//        model.addAttribute("tickets", ticketService.findAll());
+//
+//        return "main";
+//    }
 
     @PostMapping("/main")
     public String add(
