@@ -6,25 +6,33 @@ import ua.sputnik.SputnikMVC.model.entity.Event;
 import ua.sputnik.SputnikMVC.model.repository.EventRepository;
 import ua.sputnik.SputnikMVC.model.repository.TicketRepository;
 
+import java.util.Optional;
+
 /**
  * @author Barma
  */
 @Service
 public class EventService {
     private EventRepository eventRepository;
-    private TicketRepository ticketRepository;
+    private TicketService ticketService;
+
     @Autowired
-    public EventService(EventRepository eventRepository) {
+    public EventService(EventRepository eventRepository, TicketService ticketService) {
         this.eventRepository = eventRepository;
+        this.ticketService = ticketService;
     }
 
     public void addEvent(Event event) {
         eventRepository.save(event);
     }
 
-    public void deleteEvent(Long id) { }
+    public void deleteEvent(Long id) {
+        Optional<Event> event = eventRepository.findById(id);
+        ticketService.deleteAllTicketByEventId(id);
+        eventRepository.delete(event.get());
+    }
 
-    public Event findById (Long id) {
+    public Optional<Event> findById (Long id) {
         return eventRepository.findById(id);
     }
 

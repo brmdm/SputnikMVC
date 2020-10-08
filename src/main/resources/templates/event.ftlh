@@ -39,6 +39,13 @@
             </div>
             <div class="card-footer text-muted">
                 ID = ${event.id}, PRICE = ${event.price} UAH
+                <form action="/event/delete" method="post">
+                    <input type="hidden" name="eventId" value="${event.id}" />
+                    <input type="hidden" name="_csrf" value="${_csrf.token}" />
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Delete Event</button>
+                    </div>
+                </form>
             </div>
         </div>
     <#else>

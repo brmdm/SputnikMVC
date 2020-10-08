@@ -2,7 +2,6 @@
 <#include "parts/security.ftlh">
 <@c.page>
 <h5>Welcome, ${name}</h5>
-    <div>LogIn for order tickets</div>
 
     <div class="card-columns">
     <#list events  as event>

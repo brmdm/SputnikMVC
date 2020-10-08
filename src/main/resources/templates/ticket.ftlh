@@ -1,7 +1,7 @@
 <#import "parts/common.ftlh" as c>
 <#include "parts/security.ftlh">
 <@c.page>
-    Ordering ticket to ${event.getFilm().getTitle()}
+    Ordering ticket to ${event.get().getFilm().getTitle()}
     <table class="table">
         <thead>
         <tr>
@@ -16,19 +16,19 @@
         </tr>
         <tr>
             <th scope="row">Film</th>
-            <td>${event.getFilm().getTitle()}</td>
+            <td>${event.get().getFilm().getTitle()}</td>
         </tr>
         <tr>
             <th scope="row">Date</th>
-            <td>${event.getDate()}</td>
+            <td>${event.get().getDate()}</td>
         </tr>
         <tr>
             <th scope="row">Time</th>
-            <td>${event.getTime()}</td>
+            <td>${event.get().getTime()}</td>
         </tr>
         <tr>
             <th scope="row">Price</th>
-            <td>${event.getPrice()}</td>
+            <td>${event.get().getPrice()}</td>
         </tr>
         </tbody>
     </table>
@@ -36,7 +36,7 @@
 
     <form action="/ticket" method="post">
         <input type="text" name="seat" class="form-control" placeholder="Add FREE seat"/>
-        <input type="hidden" value="${event.id}" name="eventId">
+        <input type="hidden" value="${event.get().id}" name="eventId">
         <input type="hidden" value="${user.getUsername()}" name="userName">
         <input type="hidden" value="${_csrf.token}" name="_csrf">
         <button type="submit" class="btn btn-primary">Buy</button>

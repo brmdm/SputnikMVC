@@ -55,4 +55,11 @@ public class EventController {
 
         return "event";
     }
+
+    @PostMapping("/delete")
+    public String deleteEvent(@RequestParam String eventId, Model model) {
+        eventService.deleteEvent(Long.parseLong(eventId));
+        model.addAttribute("events", eventService.findAll());
+        return "event";
+    }
 }

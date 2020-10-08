@@ -28,8 +28,8 @@ public class UserService implements UserDetailsService {
         return userRepository.findByUsername(userName);
     }
 
-    public boolean addUser() {
-        return false;
+    public void addUser(User user) {
+        userRepository.save(user);
     }
 
     public User findById(Long id) {

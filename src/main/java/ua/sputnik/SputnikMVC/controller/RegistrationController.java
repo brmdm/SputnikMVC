@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import ua.sputnik.SputnikMVC.model.entity.Role;
 import ua.sputnik.SputnikMVC.model.entity.User;
 import ua.sputnik.SputnikMVC.model.repository.UserRepository;
+import ua.sputnik.SputnikMVC.service.UserService;
 
 import java.util.Collections;
 import java.util.Map;
@@ -19,18 +20,18 @@ import java.util.Map;
 @Controller
 public class RegistrationController {
 
-    private UserRepository userRepo;
+    private UserService userService;
 
     @Autowired
-    public RegistrationController(UserRepository userRepo) {
-        this.userRepo = userRepo;
-        User userFromDb = userRepo.findByUsername("admin");
+    public RegistrationController(UserService userService) {
+        this.userService = userService;
+        User userFromDb = userService.findByUsername("admin");
         if (userFromDb == null) {
             User admin = new User();
             admin.setRoles(Collections.singleton(Role.ADMIN));
             admin.setUsername("admin");
             admin.setPassword("admin");
-            userRepo.save(admin);
+            userService.addUser(admin);
         }
     }
 
@@ -41,7 +42,7 @@ public class RegistrationController {
 
     @PostMapping("/registration")
     public String addUser(User user, Map<String, Object> model) {
-        User userFromDb = userRepo.findByUsername(user.getUsername());
+        User userFromDb = userService.findByUsername(user.getUsername());
 
         if (userFromDb != null) {
             model.put("message", "User exists!");
@@ -49,7 +50,7 @@ public class RegistrationController {
         }
 
         user.setRoles(Collections.singleton(Role.USER));
-        userRepo.save(user);
+        userService.addUser(user);
 
 
         return "redirect:/login";

@@ -5,14 +5,8 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import ua.sputnik.SputnikMVC.model.entity.Role;
-import ua.sputnik.SputnikMVC.model.entity.User;
-import ua.sputnik.SputnikMVC.model.repository.UserRepository;
+import ua.sputnik.SputnikMVC.service.UserService;
 
-import java.util.Arrays;
-import java.util.Map;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
  * @author Barma
@@ -21,15 +15,15 @@ import java.util.stream.Collectors;
 @RequestMapping("/user")
 @PreAuthorize("hasAuthority('ADMIN')")
 public class UserController {
-    private UserRepository userRepo;
+    private UserService userService;
     @Autowired
-    public UserController(UserRepository userRepo) {
-        this.userRepo = userRepo;
+    public UserController(UserService userService) {
+        this.userService = userService;
     }
 
     @GetMapping
     public String userList (Model model) {
-        model.addAttribute("users", userRepo.findAll());
+        model.addAttribute("users", userService.findAll());
         return "userList";
     }
 

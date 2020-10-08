@@ -11,6 +11,8 @@ import ua.sputnik.SputnikMVC.service.EventService;
 import ua.sputnik.SputnikMVC.service.TicketService;
 import ua.sputnik.SputnikMVC.service.UserService;
 
+import java.util.Optional;
+
 /**
  * @author Barma
  */
@@ -29,7 +31,7 @@ public class TicketController {
 
     @GetMapping("{id}")
     public String ordering(@PathVariable Long id, Model model) {
-        Event event = eventService.findById(id);
+        Optional<Event> event = eventService.findById(id);
         model.addAttribute("event", event);
         return "ticket";
     }
@@ -41,12 +43,12 @@ public class TicketController {
             @RequestParam("seat") Long seat) {
 
         // TODO : Check free seat
+        Optional<Event> eventVar = eventService.findById(Long.parseLong(event));
 
         if (seat > 0 && seat < 16) {
             Ticket ticket = new Ticket(seat,
                     userService.findByUsername(user),
-                    eventService.findById(Long.parseLong(event)));
-
+                    eventVar.get());
 
             ticketService.addTicket(ticket);
         }
