@@ -7,7 +7,6 @@ import ua.sputnik.SputnikMVC.model.repository.TicketRepository;
 
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
-import java.util.Optional;
 
 /**
  * @author Barma
@@ -25,23 +24,33 @@ public class TicketService {
         ticketRepository.save(ticket);
     }
 
-    public boolean deleteTicket() {
-        return false;
-    }
+    public Iterable<Ticket> findAllTicketByEventId(Long id) {
+        ArrayList<Ticket> tickets = new ArrayList<>();
+        Ticket ticket = null;
+        try {
+            ticket = ticketRepository.findTopByEvent_Id(id).get();
+            tickets.add(ticket);
+        } catch (NoSuchElementException e) { }
 
-    public Optional<Ticket> findById(Long id) {
-        return ticketRepository.findById(id);
+        for ( ; ticket != null; ) {
+            try {
+                ticket = ticketRepository.findTopByEvent_Id(id).get();
+                tickets.add(ticket);
+            } catch (NoSuchElementException e) {
+                break;
+            }
+        }
+
+        return tickets;
     }
 
     public void deleteAllTicketByEventId(Long id) {
         Ticket ticket = null;
         try {
             ticket = ticketRepository.findTopByEvent_Id(id).get();
-        } catch (NoSuchElementException e) {
+        } catch (NoSuchElementException e) { }
 
-        }
-
-        for (int i = 0; ticket != null; i++) {
+        for ( ; ticket != null; ) {
             ticketRepository.delete(ticket);
             try {
                 ticket = ticketRepository.findTopByEvent_Id(id).get();
@@ -61,16 +70,6 @@ public class TicketService {
                 userTickets.add(t);
             }
         }
-
-
         return userTickets;
-    }
-
-    public Ticket findByEventId(Long id) {
-        return null;
-    }
-
-    public Iterable<Ticket> findAll() {
-        return ticketRepository.findAll();
     }
 }

@@ -1,12 +1,12 @@
 <#import "parts/common.ftlh" as c>
-
+<#import "/spring.ftl" as spring>
 <@c.page>
-    List of users
+    <@spring.message "user.list"/>
     <table>
         <thead>
         <tr>
-            <th>Name</th>
-            <th>Role</th>
+            <th><@spring.message "user.name"/></th>
+            <th><@spring.message "user.role"/></th>
 
         </tr>
         </thead>

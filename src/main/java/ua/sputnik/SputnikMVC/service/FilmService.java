@@ -20,16 +20,8 @@ public class FilmService {
         filmRepository.save(film);
     }
 
-    public boolean deleteFilm(Long id) {
-        return false;
-    }
-
     public Film findByTitle(String title) {
         return filmRepository.findByTitle(title);
-    }
-
-    public Film findById(Long id) {
-        return null;
     }
 
     public Iterable<Film> findAll() {

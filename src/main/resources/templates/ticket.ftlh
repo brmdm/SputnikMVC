@@ -1,33 +1,34 @@
 <#import "parts/common.ftlh" as c>
 <#include "parts/security.ftlh">
+<#import "/spring.ftl" as spring>
 <@c.page>
-    Ordering ticket to ${event.get().getFilm().getTitle()}
+    <@spring.message "ticket.title"/> ${event.get().getFilm().getTitle()}
     <table class="table">
         <thead>
         <tr>
-            <th scope="col">Information</th>
-            <th scope="col">Value</th>
+            <th scope="col"><@spring.message "ticket.information"/></th>
+            <th scope="col"><@spring.message "ticket.value"/></th>
         </tr>
         </thead>
         <tbody>
         <tr>
-            <th scope="row">User</th>
+            <th scope="row"><@spring.message "main.user"/></th>
             <td>${user.getUsername()}</td>
         </tr>
         <tr>
-            <th scope="row">Film</th>
+            <th scope="row"><@spring.message "ticket.film"/></th>
             <td>${event.get().getFilm().getTitle()}</td>
         </tr>
         <tr>
-            <th scope="row">Date</th>
+            <th scope="row"><@spring.message "ticket.date"/></th>
             <td>${event.get().getDate()}</td>
         </tr>
         <tr>
-            <th scope="row">Time</th>
+            <th scope="row"><@spring.message "ticket.time"/></th>
             <td>${event.get().getTime()}</td>
         </tr>
         <tr>
-            <th scope="row">Price</th>
+            <th scope="row"><@spring.message "ticket.price"/></th>
             <td>${event.get().getPrice()}</td>
         </tr>
         </tbody>
@@ -35,47 +36,12 @@
 
 
     <form action="/ticket" method="post">
-        <input type="text" name="seat" class="form-control" placeholder="Add FREE seat"/>
+        <input type="text" name="seat" class="form-control" placeholder="<@spring.message "ticket.addseat"/>"/>
         <input type="hidden" value="${event.get().id}" name="eventId">
         <input type="hidden" value="${user.getUsername()}" name="userName">
         <input type="hidden" value="${_csrf.token}" name="_csrf">
-        <button type="submit" class="btn btn-primary">Buy</button>
+        <button type="submit" class="btn btn-primary"><@spring.message "ticket.buy"/></button>
     </form>
 
 
-<#--    <form action="/ticket" method="post">-->
-<#--        <b>Event: ${event.getFilm().getTitle()} </b>-->
-<#--        <input type="text" name="username" value="${user.username}">-->
-<#--        <#list roles as role>-->
-<#--            <div>-->
-<#--                <label><input type="checkbox"-->
-<#--                              name="${role}" ${user.roles?seq_contains(role)?string("checked", "")}>${role}-->
-<#--                </label>-->
-<#--            </div>-->
-<#--        </#list>-->
-
-<#--        <input type="hidden" value="${user.id}" name="userId">-->
-<#--        <input type="hidden" value="${_csrf.token}" name="_csrf">-->
-<#--        <button type="submit">Save</button>-->
-<#--    </form>-->
 </@c.page>
-
-<#--<#import "parts/common.ftlh" as c>-->
-
-<#--<@c.page>-->
-<#--    User editor-->
-
-<#--    <form action="/user" method="post">-->
-<#--&lt;#&ndash;        <input type="text" name="username" value="${usr.username}">&ndash;&gt;-->
-<#--        <#list roles as role>-->
-<#--            <div>-->
-<#--                <label><input type="checkbox" name="${role}"-->
-<#--&lt;#&ndash;                            ${usr.roles?seq_contains(role)?string("checked", "")}&ndash;&gt;-->
-<#--                    >${role}</label>-->
-<#--            </div>-->
-<#--        </#list>-->
-<#--&lt;#&ndash;        <input type="hidden" value="${usr.id}" name="userId">&ndash;&gt;-->
-<#--        <input type="hidden" value="${_csrf.token}" name="_csrf">-->
-<#--        <button type="submit">Save</button>-->
-<#--    </form>-->
-<#--</@c.page>-->

@@ -1,11 +1,14 @@
 package ua.sputnik.SputnikMVC.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import ua.sputnik.SputnikMVC.model.entity.Event;
+import ua.sputnik.SputnikMVC.model.entity.Ticket;
 import ua.sputnik.SputnikMVC.model.repository.EventRepository;
-import ua.sputnik.SputnikMVC.model.repository.TicketRepository;
 
+import java.util.ArrayList;
 import java.util.Optional;
 
 /**
@@ -36,8 +39,15 @@ public class EventService {
         return eventRepository.findById(id);
     }
 
-    public int[] findFreeSeats () {
+    public int[] findFreeSeatsByEventId (Long id) {
+        Iterable<Ticket> ticket = ticketService.findAllTicketByEventId(id);
+
+
         return null;
+    }
+
+    public Page<Event> findAll(Pageable pageable) {
+        return eventRepository.findAll(pageable);
     }
 
     public Iterable<Event> findAll() {
