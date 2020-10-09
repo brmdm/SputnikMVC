@@ -19,4 +19,5 @@
 ![alt text](https://github.com/brmdm/SputnikMVC/blob/master/7.JPG)
 ![alt text](https://github.com/brmdm/SputnikMVC/blob/master/8.JPG)
 ![alt text](https://github.com/brmdm/SputnikMVC/blob/master/9.JPG)
+![alt text](https://github.com/brmdm/SputnikMVC/blob/master/10.JPG)
 
