@@ -7,7 +7,8 @@
 4. Зареєстрований користувач повинен мати можливість придбати квиток на обраний сеанс.
 5. Адміністратор може внести до розкладу новий фільм, скасувати фільм, переглянути відвідуваність залу.
 
-//TODO: 
+//TODO musthave: Вільні місця, сортування, валідація даних, тестування, DTO.
+//TODO: Refactor: формування new у методах Service, використання Optional, транзакции.
 
 ![alt text](https://github.com/brmdm/SputnikMVC/blob/master/0.JPG)
 ![alt text](https://github.com/brmdm/SputnikMVC/blob/master/1.JPG)
