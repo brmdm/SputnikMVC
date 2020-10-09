@@ -11,15 +11,15 @@
 
 //TODO: Refactor: формування new у методах Service, використання Optional, транзакции.
 
-![alt text](https://github.com/brmdm/SputnikMVC/blob/master/0.JPG)
-![alt text](https://github.com/brmdm/SputnikMVC/blob/master/1.JPG)
-![alt text](https://github.com/brmdm/SputnikMVC/blob/master/2.JPG)
-![alt text](https://github.com/brmdm/SputnikMVC/blob/master/3.JPG)
-![alt text](https://github.com/brmdm/SputnikMVC/blob/master/4.JPG)
-![alt text](https://github.com/brmdm/SputnikMVC/blob/master/5.JPG)
-![alt text](https://github.com/brmdm/SputnikMVC/blob/master/6.JPG)
-![alt text](https://github.com/brmdm/SputnikMVC/blob/master/7.JPG)
-![alt text](https://github.com/brmdm/SputnikMVC/blob/master/8.JPG)
-![alt text](https://github.com/brmdm/SputnikMVC/blob/master/9.JPG)
-![alt text](https://github.com/brmdm/SputnikMVC/blob/master/10.JPG)
+![alt text](https://github.com/brmdm/SputnikMVC/blob/master/screen/0.JPG)
+![alt text](https://github.com/brmdm/SputnikMVC/blob/master/screen/1.JPG)
+![alt text](https://github.com/brmdm/SputnikMVC/blob/master/screen/2.JPG)
+![alt text](https://github.com/brmdm/SputnikMVC/blob/master/screen/3.JPG)
+![alt text](https://github.com/brmdm/SputnikMVC/blob/master/screen/4.JPG)
+![alt text](https://github.com/brmdm/SputnikMVC/blob/master/screen/5.JPG)
+![alt text](https://github.com/brmdm/SputnikMVC/blob/master/screen/6.JPG)
+![alt text](https://github.com/brmdm/SputnikMVC/blob/master/screen/7.JPG)
+![alt text](https://github.com/brmdm/SputnikMVC/blob/master/screen/8.JPG)
+![alt text](https://github.com/brmdm/SputnikMVC/blob/master/screen/9.JPG)
+![alt text](https://github.com/brmdm/SputnikMVC/blob/master/screen/10.JPG)
 
